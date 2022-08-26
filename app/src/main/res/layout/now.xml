@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nowLayout"
     android:layout_width="match_parent"
     android:layout_height="530dp"
@@ -33,6 +34,15 @@
             android:layout_gravity="center_horizontal"
             android:textColor="#fff"
             android:textSize="70sp" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|start"
+            android:layout_margin="16dp"
+            app:elevation="8dp"
+            android:src="@drawable/ic_home" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

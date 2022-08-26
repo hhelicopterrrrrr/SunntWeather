@@ -1,5 +1,6 @@
 package com.example.sunnyweather.ui.Place
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -7,8 +8,10 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Adapter
 import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -16,7 +19,9 @@ import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sunnyweather.MainActivity
 import com.example.sunnyweather.R
+import com.example.sunnyweather.SunnyWeatherApplication
 import com.example.sunnyweather.ui.Weather.WeatherActivity
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_place.*
 
 class PlaceFragment:Fragment(){
@@ -79,13 +84,20 @@ class PlaceFragment:Fragment(){
                 viewmodel.placeList.clear()
                 viewmodel.placeList.addAll(places)
                 adapter.notifyDataSetChanged()
+                val manager = SunnyWeatherApplication.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                manager.hideSoftInputFromWindow(actionBarLayout.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+
             }
             else{
-                Toast.makeText(activity,"未能查询到任何地点",Toast.LENGTH_SHORT).show()
+                Snackbar.make(actionBarLayout, "未查询到地点", Snackbar.LENGTH_LONG)
+                    .setAction("关闭") {
+                    }
+                    .show()
                 result.exceptionOrNull()?.printStackTrace()
             }
 
         })
+
     }
 
 

@@ -3,7 +3,6 @@ package com.example.sunnyweather.ui.Weather
 
 import android.content.Context
 import android.graphics.Color
-import android.icu.text.SimpleDateFormat
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -34,6 +33,9 @@ class WeatherActivity : AppCompatActivity() {
         decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
         window.statusBarColor = Color.TRANSPARENT
         setContentView(R.layout.activity_weather)
+        fab.setOnClickListener {
+            drawerLayout.openDrawer(GravityCompat.START)
+        }
         if (viewModel.locationLng.isEmpty()) {
             viewModel.locationLng = intent.getStringExtra("location_lng") ?: ""
         }
