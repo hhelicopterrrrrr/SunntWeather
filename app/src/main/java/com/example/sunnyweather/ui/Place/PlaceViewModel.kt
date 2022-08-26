@@ -12,6 +12,8 @@ class PlaceViewModel:ViewModel() {
     fun searchPlace(query:String){
         searchLiveDate.value=query
     }
-    val PlaceLiveDate = Transformations.switchMap(searchLiveDate){query -> Repository.searchPlace(query)}
-
+    val PlaceLiveDate = Transformations.switchMap(searchLiveDate){query -> Repository.searchPlaces(query)}
+    fun savePlace(place: Place) = Repository.savePlace(place)
+    fun getSavedPlace() = Repository.getSavedPlace()
+    fun isPlaceSaved() = Repository.isPlaceSaved()
 }
